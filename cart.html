@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Belanja - Aerostreet</title>
+    <link rel="shortcut icon" href="Elemen/Logo%20Product%20Aerostreet.ico" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #F9FAFB;
+            min-height: 100vh;
+        }
+
+        /* Navbar Cart Styling */
+        .Cart-Navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            /* Default untuk Desktop */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .Cart-Nav-Left a {
+            display: flex;
+            align-items: center;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        .Cart-Nav-Left a:hover {
+            color: #FF5330;
+        }
+
+        .Cart-Nav-Left svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .Cart-Nav-Center {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FF5330;
+        }
+
+        .Cart-Nav-Right {
+            min-width: 28px;
+            text-align: right;
+        }
+
+        .Edit-Btn {
+            font-size: 15px;
+            font-weight: 600;
+            color: #000000;
+            cursor: pointer;
+            display: none;
+        }
+
+        .Cart-Page-Section {
+            padding-top: 120px;
+            padding-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .Cart-Empty-State {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .Back-Button {
+            margin-top: 30px;
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 25px;
+            background-color: #FF5330;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .Back-Button:hover {
+            background-color: #e04321;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(224, 67, 33, 0.2);
+        }
+
+        /* Icon & Text Empty State */
+        .Cart-Empty-Icon {
+            width: 80px;
+            height: 80px;
+            color: #D1D5DB;
+        }
+
+        .Empty-Title {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .Empty-Desc {
+            color: #9CA3AF;
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* Responsive Styles - Mobile (Max 767px) */
+        @media screen and (max-width: 767px) {
+            .Cart-Navbar {
+                height: 60px;
+                padding: 0 15px;
+            }
+
+            .Cart-Nav-Left svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .Cart-Nav-Center {
+                font-size: 16px;
+            }
+
+            .Cart-Page-Section {
+                padding-top: 100px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .Cart-Empty-Icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .Empty-Title {
+                font-size: 18px;
+                padding: 0 10px;
+            }
+
+            .Empty-Desc {
+                font-size: 14px;
+            }
+        }
+
+        /* Responsive Styles - Tablet (768px - 1024px) */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .Cart-Navbar {
+                padding: 0 30px;
+            }
+        }
+
+        /* Responsive Styles - Large Desktop (1440px+) */
+        @media screen and (min-width: 1440px) {
+            .Cart-Navbar {
+                padding: 0 100px;
+            }
+
+            .Cart-Nav-Center {
+                font-size: 22px;
+            }
+
+            .Cart-Empty-Icon {
+                width: 120px;
+                height: 120px;
+            }
+
+            .Empty-Title {
+                font-size: 28px;
+            }
+
+            .Empty-Desc {
+                font-size: 18px;
+                max-width: 600px;
+            }
+
+            .Back-Button {
+                padding: 18px 40px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="Cart-Navbar">
+            <div class="Cart-Nav-Left">
+                <a href="index.html" onclick="event.preventDefault(); window.history.back();">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </a>
+            </div>
+            <div class="Cart-Nav-Center">
+                Keranjang (0)
+            </div>
+            <div class="Cart-Nav-Right">
+                <span class="Edit-Btn" id="editCartBtn">Edit</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="Cart-Page-Section">
+            <div class="Cart-Empty-State">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="Cart-Empty-Icon">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                <h2 class="Empty-Title">Keranjang Anda Kosong</h2>
+                <p class="Empty-Desc">Belum ada barang yang ditambahkan. Mari mulai belanja dan temukan produk favorit
+                    Anda!
+                </p>
+                <a href="index.html" class="Back-Button"
+                    onclick="event.preventDefault(); window.history.back();">Belanja
+                    Sekarang</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            // Mencegah tombol F12
+            if (e.keyCode === 123) {
+                e.preventDefault();
+            }
+            // Mencegah Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+                e.preventDefault();
+            }
+            // Mencegah Ctrl+U (View Source)
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,3297 @@
+/**
+ *  =========================================================================================
+ *  🎨 AEROSTREET LANDING PAGE - STYLESHEET
+ *  =========================================================================================
+
+ *  👤 Author       : Winanda Dev
+ *  📅 Year         : 2026
+ *  📦 Description  : File styling utama untuk tampilan visual landing page Aerostreet.
+ *                    Menggunakan Modern CSS (Flexbox, Grid, Variables).
+
+ *  🖌️ BAGIAN STYLING :
+ *  ---------------------------------------------------------------------------------------
+ *  1. 🌍 Global         : Reset, Typography, Scrollbar custom.
+ *  2. 🎩 Navbar         : Styling navigasi desktop & mobile menu.
+ *  3. 🏠 Home Section   : Hero layout, gradient background, animations.
+ *  4. ℹ️ About Section  : Layout grid, overlay cards, stats boxes.
+ *  5. 👟 Products       : Card styling, Swiper overrides, Truck Button.
+ *  6. ✨ Features       : Grid keunggulan dengan hover effects.
+ *  7. 📂 Categories     : Image grid dengan overlay gradient.
+ *  8. 📞 Contact        : Form styling, input fields, contact info.
+ *  9. 🦶 Footer         : Dark theme footer layout.
+ *  10.📱 Responsive      : Media queries untuk Mobile & Tablet.
+
+ *  🛠️ Library :
+ *     - Swiper.js (Slider)
+ *     - AOS (Animate On Scroll)
+ *     - GSAP (GreenSock Animation Platform)
+
+ *  =========================================================================================
+ */
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Mencegah scroll horizontal akibat animasi AOS */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #f04a29 #ffffff; /* Firefox (Thumb Track) */
+}
+
+/**
+ * ============================================================================
+ *  1. GLOBAL STYLES & RESET
+ *  Pengaturan dasar font, scrollbar, dan reset CSS.
+ * ============================================================================
+ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f04a29;
+    border-radius: 10px;
+}
+
+body,
+body:focus,
+body:active {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    border: none;
+    box-shadow: none;
+}
+
+/* Scroll untuk section dengan ID (Navbar) */
+section[id] {
+    scroll-margin-top: 70px;
+}
+
+/* ================================================ */
+
+/**
+ * ============================================================================
+ *  2. NAVBAR STYLES
+ *  Styling untuk header, logo, menu navigasi, dan cart icon.
+ * ============================================================================
+ */
+.Navbar-Container {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 0 40px;
+    z-index: 1000;
+}
+
+/* Logo - Left side */
+.Logo {
+    flex: 0 0 auto;
+}
+
+.Logo .Text-Logo {
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Navbar Menu - Center */
+.Navbar-Menu {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.Menu {
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.Menu li a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    width: max-content;
+    position: relative;
+    cursor: pointer;
+    margin: 100px auto;
+}
+
+.Menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    height: 2px;
+    width: 100%;
+    left: 0px;
+    background-color: #FF5330;
+    transition: 0.3s;
+    transition-timing-function: ease-in-out;
+    transform: scaleX(0);
+}
+
+.Menu li a:hover::after {
+    transform: scaleX(1);
+}
+
+.Menu li a:hover {
+    color: #FF5330;
+}
+
+/* Right Side - Cart (desktop) */
+.Right-Side {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-right: 15px;
+}
+
+.Cart {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.Cart a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    transition: color 0.3s ease;
+}
+
+.Cart a:hover {
+    color: #FF5330;
+}
+
+.Cart-Icon {
+    width: 28px;
+    height: 28px;
+    user-select: none;
+    -moz-us-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.cart-counter {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #FF5330;
+    color: white;
+    border-radius: 10px;
+    min-width: 20px;
+    padding: 0 4px;
+    height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;    
+    transition: transform 0.3s ease;
+}
+
+.cart-counter.visible {
+    transform: scale(1);
+}
+
+.cart-shake {
+    animation: cartShake 0.5s ease-in-out;
+}
+
+/* Animasi Keranjang Bergoyang */
+@keyframes cartShake {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+    100% { transform: rotate(0); }
+}
+
+/* Mobile Menu Button - hidden on desktop */
+.Mobile-Menu-Btn {
+    display: none;
+}
+
+/* Mobile Dropdown - hidden on desktop */
+.Mobile-Dropdown {
+    display: none;
+}
+
+/* ================================================ */
+
+/**
+ * ============================================================================
+ *  3. HOME SECTION STYLES
+ *  Styling area Hero, background gradient, dan elemen dekoratif.
+ * ============================================================================
+ */
+.Home-Section {
+    background: radial-gradient(circle at 75% 50%, #ff795e 0%, #FF603E 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 70px;
+    box-sizing: border-box;
+}
+
+/* Elemen Dekoratif Lingkaran di Belakang Sepatu */
+.Home-Section::before {
+    content: "";
+    position: absolute;
+    top: 51%;
+    right: 7%;
+    transform: translateY(-50%);
+    width: 520px;
+    height: 520px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Home Container - Flexbox for layout */
+.Home-Container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1250px;
+    padding: 0 50px;
+    gap: 30px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+/* Home Content - Left Side (Text) */
+.Home-Content {
+    flex: 1;
+    max-width: 500px;
+    text-align: left;
+}
+
+/* Slogan Container */
+.Slogan-Container {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 20px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 15px;
+}
+
+/* Slogan Circle */
+.Slogan-Circle {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #FF5330;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Slogan */
+.Slogan {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 2px;
+    opacity: 0.9;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.Home-Title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Home-Description {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Button Container - Desktop (Horizontal) */
+.Button-Container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* Home Button */
+.Home-Button {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    color: #FF603E;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.Home-Button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Home Button Icon */
+.Home-Button-Icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.Home-Button:hover .Home-Button-Icon {
+    transform: translateX(4px);
+}
+
+/* Watch Video Button - Same style as Home Button */
+.Watch-Video-Button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 40px;
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    border: 2px solid #ffffff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.Watch-Video-Button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.Watch-Icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.Watch-Video-Button:hover .Watch-Icon {
+    transform: scale(1.1);
+}
+
+/* Info Box Styles - Desktop */
+.Info-Box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.Info-Box .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.Info-Box .box h3 {
+    color: #ffffff;
+    font-size: 32px;
+    margin: 0;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.Info-Box .box p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    margin: 5px 0 0 0;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Vertical Separator Line - Desktop */
+.Info-Box span {
+    display: inline-block;
+    width: 2px;
+    height: 50px;
+    background-color: #ffffff;
+    align-self: center;
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+/* Home Image - Right Side (Shoe) */
+.Home-Image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.Home-Image img {
+    margin-top: 40px;
+    width: 450px;
+    height: 450px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    animation: naik-turun 5s ease-in-out infinite;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+@keyframes naik-turun {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ================================================ */
+
+/**
+ * ============================================================================
+ *  4. ABOUT SECTION STYLES
+ *  Styling untuk bagian "Tentang Kami", gambar overlay, dan statistik.
+ * ============================================================================
+ */
+.About-Section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F9FAFB;
+    padding-top: 80px;
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+
+.About-Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1320px;
+    padding: 0 50px;
+    gap: 60px;
+    box-sizing: border-box;
+}
+
+/* About Image - Left Side (Muri Record Holder) */
+.About-Image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    position: relative;
+}
+
+.About-Image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* About Overlay Boxes - Top Left */
+.About-Overlay-Box1 {
+    position: absolute;
+    top: -23px;
+    left: -30px;
+}
+
+.Overlay-TextWrapper1 {
+    display: flex;
+    flex-direction: column;
+    background-color: #012B7F;
+    padding: 18px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.Overlay-Text-Box11 {
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.Overlay-Text-Box22 {
+    margin-top: -5px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* About Overlay Box 2 - Bottom Right */
+.About-Overlay-Box2 {
+    position: absolute;
+    bottom: -30px;
+    right: -27px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.Overlay-Icon-Box {
+    width: 50px;
+    height: 50px;
+    background-color: #FFEDE9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Overlay-Icon-Box svg {
+    width: 27px;
+    height: 27px;
+    color: #FF5330;
+}
+
+.Overlay-TextWrapper2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.Overlay-Text-Box33 {
+    font-size: 27px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.2;
+}
+
+.Overlay-Text-Box44 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #555555;
+    line-height: 1.2;
+}
+
+/* About Content - Right Side (Text) */
+.About-Content {
+    flex: 1;
+    width: 50%;
+    text-align: left;
+}
+
+.About-Title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #FF5330;
+    margin: 0 0 15px 0;
+}
+
+.About-Subtitle {
+    font-size: 40px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 25px 0;
+    line-height: 1.2;
+}
+
+.About-Description {
+    font-size: 18px;
+    color: #555555;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+/* About Features Grid */
+.About-Features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.Feature-Item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.Feature-Icon {
+    padding: 5px 5px;
+    background-color: #FF5330;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Feature-Icon svg {
+    width: 13px;
+    height: 13px;
+    color: #ffffff;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.Feature-Text {
+    font-size: 15px;
+    color: #555555;
+    font-weight: 500;
+}
+
+/* Stats Grid - Full Width Below About */
+.Stats-Container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1320px;
+    margin-top: 60px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.Stats-Box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.Stats-Box:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.Stats-Box:hover .Stats-IconWrapper {
+    background-color: #FF5330;
+}
+
+.Stats-Box:hover .Stats-Icon {
+    color: #ffffff;
+}
+
+.Stats-IconWrapper {
+    background-color: #FFEDE9;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Stats-Icon {
+    color: #ff4b27;
+}
+
+.Stats-Number {
+    font-size: 25px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.2;
+}
+
+.Stats-Label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555555;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* ================================================ */
+
+/**
+ * ============================================================================
+ *  5. PRODUCTS SECTION STYLES
+ *  Styling untuk container produk, card, rating, dan harga.
+ * ============================================================================
+ */
+.Products-Section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F9FAFB;
+    padding-top: 80px;
+    overflow: hidden;
+}
+
+.Products-Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1320px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+/* Products Text Container - Center side */
+.Products-Text-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+}
+
+.Products-Slogan {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #FF5330;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.Products-Title {
+    font-size: 45px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Title-Normal1 {
+    color: #000000;
+    font-weight: 700;
+}
+
+.Title-Accent1 {
+    color: #FF5330;
+    font-weight: 700;
+}
+
+.Products-Description {
+    font-size: 18px;
+    color: #555555;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 680px;
+}
+
+/* Products Swiper Container - Full Width */
+.Products-Swiper-Container {
+    width: 100%;
+    max-width: 1320px;
+    margin-top: 30px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.Products-Swiper {
+    width: 100%;
+    height: auto;
+}
+
+.Products-Swiper .swiper-slide {
+    width: 350px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* Product Card Styles */
+.Product-Card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.Product-Card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.Product-Image {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.Product-Image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.Product-Info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.Product-Category {
+    font-size: 12px;
+    font-weight: 500;
+    color: #555555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.Product-Name {
+    font-size: 17px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Product Rating Styles */
+.Product-Rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.Rating-Icon {
+    width: 16px;
+    height: 16px;
+    color: #FFC107;
+    fill: #FFC107;
+}
+
+.Rating-Number {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.Rating-Separator {
+    width: 2px;
+    height: 14px;
+    background-color: #e0e0e0;
+}
+
+.Rating-Sold {
+    font-size: 13px;
+    color: #888888;
+}
+
+/* Product Price Styles */
+.Product-Price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.Price-Final {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FF5330;
+}
+
+.Price-Original {
+    font-size: 13px;
+    color: #999999;
+    text-decoration: line-through;
+}
+
+/* ================================================ */
+/* 5.1. Swiper Navigation Buttons */
+.Products-Swiper .swiper-button-prev,
+.Products-Swiper .swiper-button-next {
+    color: #FF5330;
+    background-color: #ffffff;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.Products-Swiper .swiper-button-prev::after,
+.Products-Swiper .swiper-button-next::after {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.Products-Swiper .swiper-button-prev:hover,
+.Products-Swiper .swiper-button-next:hover {
+    background-color: #FF5330;
+    color: #ffffff;
+}
+
+/* Swiper Pagination */
+.Products-Swiper .swiper-pagination {
+    position: relative;
+    margin-top: 30px;
+}
+
+.Products-Swiper .swiper-pagination-bullet {
+    background-color: #cccccc;
+    opacity: 1;
+}
+
+.Products-Swiper .swiper-pagination-bullet-active {
+    background-color: #FF5330;
+}
+
+/* ================================================ */
+/**
+ *  5.2. TRUCK BUTTON ANIMATION
+ *  CSS kompleks untuk animasi tombol "Add to Cart" (Truk berjalan).
+ *  Credit: Aaron Iker (Desain asli).
+ * ============================================================================
+ */
+.truck-button {
+    --color: #fff;
+    --background: #2B3044;
+    --tick: #16BF78;
+    --base: #0D0F18;
+    --wheel: #2B3044;
+    --wheel-inner: #646B8C;
+    --wheel-dot: #fff;
+    --back: #6D58FF;
+    --back-inner: #362A89;
+    --back-inner-shadow: #2D246B;
+    --front: #A6ACCD;
+    --front-shadow: #535A79;
+    --front-light: #FFF8B1;
+    --window: #2B3044;
+    --window-shadow: #404660;
+    --street: #646B8C;
+    --street-fill: #404660;
+    --box: #DCB97A;
+    --box-shadow: #B89B66;
+    margin-top: 20px;
+    padding: 12px 0;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    border: none;
+    outline: none;
+    color: var(--color);
+    background: var(--background);
+    border-radius: var(--br, 15px);
+    -webkit-tap-highlight-color: transparent;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rx, 0deg)) translateZ(0);
+    transition: transform 0.5s, border-radius 0.3s linear var(--br-d, 0s);
+}
+
+.truck-button:before, .truck-button:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 6px;
+    display: block;
+    background: var(--b, var(--street));
+    transform-origin: 0 100%;
+    transform: rotateX(90deg) scaleX(var(--sy, 1));
+}
+.truck-button:after {
+    --sy: var(--progress, 0);
+    --b: var(--street-fill);
+}
+.truck-button .default,
+.truck-button .success {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    opacity: var(--o, 1);
+    transition: opacity 0.3s;
+}
+.truck-button .success {
+    --o: 0;
+    position: absolute;
+    top: 12px;
+    left: 0;
+    right: 0;
+}
+.truck-button .success svg {
+    width: 12px;
+    height: 10px;
+    display: inline-block;
+    vertical-align: top;
+    fill: none;
+    margin: 7px 0 0 12px;
+    stroke: var(--tick);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: var(--offset, 16px);
+    transition: stroke-dashoffset 0.4s ease 0.45s;
+}
+.truck-button .truck {
+    position: absolute;
+    width: 72px;
+    height: 28px;
+    transform: rotateX(90deg) translate3d(var(--truck-x, 4px), calc(var(--truck-y-n, -26) * 1px), 12px);
+}
+.truck-button .truck:before, .truck-button .truck:after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: var(--l, 18px);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: inset 0 0 0 2px var(--wheel), inset 0 0 0 4px var(--wheel-inner);
+    background: var(--wheel-dot);
+    transform: translateY(calc(var(--truck-y) * -1px)) translateZ(0);
+}
+.truck-button .truck:after {
+    --l: 54px;
+}
+.truck-button .truck .wheel,
+.truck-button .truck .wheel:before {
+    position: absolute;
+    bottom: var(--b, -6px);
+    left: var(--l, 6px);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--wheel);
+    transform: translateZ(0);
+}
+.truck-button .truck .wheel {
+    transform: translateY(calc(var(--truck-y) * -1px)) translateZ(0);
+}
+.truck-button .truck .wheel:before {
+    --l: 35px;
+    --b: 0;
+    content: "";
+}
+.truck-button .truck .front,
+.truck-button .truck .back,
+.truck-button .truck .box {
+    position: absolute;
+}
+.truck-button .truck .back {
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 47px;
+    height: 28px;
+    border-radius: 1px 1px 0 0;
+    background: linear-gradient(68deg, var(--back-inner) 0%, var(--back-inner) 22%, var(--back-inner-shadow) 22.1%, var(--back-inner-shadow) 100%);
+}
+.truck-button .truck .back:before, .truck-button .truck .back:after {
+    content: "";
+    position: absolute;
+}
+.truck-button .truck .back:before {
+    left: 11px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    border-radius: 0 1px 0 0;
+    background: var(--back);
+}
+.truck-button .truck .back:after {
+    border-radius: 1px;
+    width: 73px;
+    height: 2px;
+    left: -1px;
+    bottom: -2px;
+    background: var(--base);
+}
+.truck-button .truck .front {
+    left: 47px;
+    bottom: -1px;
+    height: 22px;
+    width: 24px;
+    -webkit-clip-path: polygon(55% 0, 72% 44%, 100% 58%, 100% 100%, 0 100%, 0 0);
+    clip-path: polygon(55% 0, 72% 44%, 100% 58%, 100% 100%, 0 100%, 0 0);
+    background: linear-gradient(84deg, var(--front-shadow) 0%, var(--front-shadow) 10%, var(--front) 12%, var(--front) 100%);
+}
+.truck-button .truck .front:before, .truck-button .truck .front:after {
+    content: "";
+    position: absolute;
+}
+.truck-button .truck .front:before {
+    width: 7px;
+    height: 8px;
+    background: #fff;
+    left: 7px;
+    top: 2px;
+    -webkit-clip-path: polygon(0 0, 60% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 60% 0%, 100% 100%, 0% 100%);
+    background: linear-gradient(59deg, var(--window) 0%, var(--window) 57%, var(--window-shadow) 55%, var(--window-shadow) 100%);
+}
+.truck-button .truck .front:after {
+    width: 3px;
+    height: 2px;
+    right: 0;
+    bottom: 3px;
+    background: var(--front-light);
+}
+.truck-button .truck .box {
+    width: 13px;
+    height: 13px;
+    right: 56px;
+    bottom: 0;
+    z-index: 1;
+    border-radius: 1px;
+    overflow: hidden;
+    transform: translate(calc(var(--box-x, -24) * 1px), calc(var(--box-y, -6) * 1px)) scale(var(--box-s, 0.5));
+    opacity: var(--box-o, 0);
+    background: linear-gradient(68deg, var(--box) 0%, var(--box) 50%, var(--box-shadow) 50.2%, var(--box-shadow) 100%);
+    background-size: 250% 100%;
+    background-position-x: calc(var(--bx, 0) * 1%);
+}
+.truck-button .truck .box:before, .truck-button .truck .box:after {
+    content: "";
+    position: absolute;
+}
+.truck-button .truck .box:before {
+    content: "";
+    background: rgba(255, 255, 255, 0.2);
+    left: 0;
+    right: 0;
+    top: 6px;
+    height: 1px;
+}
+.truck-button .truck .box:after {
+    width: 6px;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    background: var(--back);
+    transform: translateX(calc(var(--hx, 0) * 1px));
+}
+.truck-button.animation {
+    --rx: -90deg;
+    --br: 0;
+}
+.truck-button.animation .default {
+    --o: 0;
+}
+.truck-button.animation.done {
+    --rx: 0deg;
+    --br: 15px;
+    --br-d: .2s;
+}
+.truck-button.animation.done .success {
+    --o: 1;
+    --offset: 0;
+}
+
+/**
+ * ============================================================================
+ *  5.3. NOTIFICATION POPUP
+ *  Styling untuk notifikasi "Ditambahkan ke keranjang".
+ * ============================================================================
+ */
+.cart-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    z-index: 11000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.cart-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.cart-notification-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #FF5330;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(255, 83, 48, 0.3);
+}
+
+.cart-notification-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.cart-notification-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/**
+ * ============================================================================
+ *  6. KEUNGGULAN SECTION STYLES
+ *  Styling grid box untuk fitur dan kelebihan brand.
+ * ============================================================================
+ */
+.Keunggulan-Section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F9FAFB;
+    padding-top: 80px;
+    padding-bottom: 28px;
+    overflow: hidden;
+}
+
+.Keunggulan-Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1320px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+/* Products Text Container - Center side */
+.Keunggulan-Text-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+}
+
+.Keunggulan-Slogan {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #FF5330;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.Keunggulan-Title {
+    font-size: 45px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Title-Normal2 {
+    color: #000000;
+    font-weight: 700;
+}
+
+.Title-Accent2 {
+    color: #FF5330;
+    font-weight: 700;
+}
+
+.Keunggulan-Description {
+    font-size: 18px;
+    color: #555555;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 680px;
+}
+
+/* Keunggulan Grid Styles */
+.Keunggulan-Grid-Container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    width: 100%;
+    max-width: 1320px;
+    margin-top: 50px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.Keunggulan-Box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Garis Transisi Hover */
+.Keunggulan-Box::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background-color: var(--hover-color, #FF5330);
+    transition: width 0.3s ease;
+}
+
+.Keunggulan-Box:hover::after {
+    width: 100%;
+}
+
+.Keunggulan-Box:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.Keunggulan-Box:hover .Keunggulan-Box-Title {
+    color: #FF5330;
+}
+
+.Keunggulan-Box:hover .Keunggulan-Icon-Wrapper1,
+.Keunggulan-Box:hover .Keunggulan-Icon-Wrapper2,
+.Keunggulan-Box:hover .Keunggulan-Icon-Wrapper3 {
+    transform: scale(1.06);
+}
+
+.Keunggulan-Icon-Wrapper1 {
+    width: 60px;
+    height: 60px;
+    background-color: #FFEDE9;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.Keunggulan-Icon-Wrapper2 {
+    width: 60px;
+    height: 60px;
+    background-color: #EFEDFA;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.Keunggulan-Icon-Wrapper3 {
+    width: 60px;
+    height: 60px;
+    background-color: #E4F4F7;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.Keunggulan-Icon-Wrapper svg {
+    width: 30px;
+    height: 30px;
+}
+
+.Keunggulan-Box-Title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.Keunggulan-Box-Desc {
+    font-size: 15px;
+    color: #555555;
+    margin: 0;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* ================================================ */
+
+/**
+ * ============================================================================
+ *  7. CATEGORIES SECTION STYLES
+ *  Styling grid kategori produk dengan efek hover overlay.
+ * ============================================================================
+ */
+.Categories-Section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F9FAFB;
+    padding-top: 80px;
+    overflow: hidden;
+}
+
+.Categories-Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1320px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+/* Products Text Container - Center side */
+.Categories-Text-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+}
+
+.Categories-Slogan {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #FF5330;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.Categories-Title {
+    font-size: 45px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Title-Normal3 {
+    color: #000000;
+    font-weight: 700;
+}
+
+.Title-Accent3 {
+    color: #FF5330;
+    font-weight: 700;
+}
+
+.Categories-Description {
+    font-size: 18px;
+    color: #555555;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 680px;
+}
+
+/* Categories Grid Styles */
+.Category-Grid-Container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1320px;
+    margin-top: 40px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.Category-Box {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.Category-Box-Bg {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.Category-Box:hover .Category-Box-Bg {
+    transform: scale(1.05);
+}
+
+.Category-Box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%);
+    z-index: 1;
+}
+
+.Category-Box:hover::after {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+.Category-Box-Content {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.Category-Box-Content span {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.Category-Box-Content h3 {
+    margin: 0 0 5px 0;
+    font-size: 26px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.Category-Box-Content p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.Category-Box-Content svg {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.Category-Box:hover .Category-Box-Content svg {
+    transform: translate(5px, -5px);
+}
+
+/* ================================================ */
+
+/**
+ * ============================================================================
+ *  8. CONTACT SECTION STYLES
+ *  Styling informasi kontak, ikon sosial media, dan formulir input.
+ * ============================================================================
+ */
+.Contact-Section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F9FAFB;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    overflow: hidden;
+}
+
+.Contact-Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1320px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+/* Contact Text Container - Center side */
+.Contact-Text-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+}
+
+.Contact-Slogan {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #FF5330;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.Contact-Title {
+    font-size: 45px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Title-Normal4 {
+    color: #000000;
+    font-weight: 700;
+}
+
+.Title-Accent4 {
+    color: #FF5330;
+    font-weight: 700;
+}
+
+.Contact-Description {
+    font-size: 18px;
+    color: #555555;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.Contact-Content-Container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 100%;
+    max-width: 1320px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    margin-top: 60px;
+}
+
+/* Informasi Kontak - Sisi Kiri */
+.Contact-Info {
+    flex: 1;
+    background-color: #F9FAFB;
+}
+
+.Contact-Info h4 {
+    font-size: 23px;
+    font-weight: bold;
+    color: #000;
+    margin: 0 0 20px 0;
+}
+
+.Contact-Info p {
+    font-size: 16.3px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Contact Info Boxes */
+.Contact-Info-Boxes {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.Contact-Info-Box {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.Info-Box-Icon {
+    flex-shrink: 0;
+    background-color: #FFEDE9;
+    color: #FF5330;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Info-Box-Icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.Info-Box-Text h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+.Info-Box-Text p {
+    margin: 0;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Socials in Contact Info */
+.Contact-Socials {
+    margin-top: 30px;
+}
+
+.Contact-Socials h4 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+.Social-Icons-Container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.Social-Icon-Box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #E5E7EB;
+    color: #555;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.Social-Icon-Box svg {
+    width: 24px;
+    height: 24px;
+}
+
+.Social-Icon-Box:hover {
+    background-color: #FF5330;
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Formulir Kontak - Sisi Kanan */
+.Contact-Form-Wrapper {
+    flex: 0.9;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.Contact-Form h3 {
+    margin: 0 0 8px 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+.Contact-Form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.Form-Group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.Form-Label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.Form-Input,
+.Form-Textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.Form-Input:focus,
+.Form-Textarea:focus {
+    outline: none;
+    border-color: #FF5330;
+    box-shadow: 0 0 0 4px rgba(255, 83, 48, 0.15);
+}
+
+.Form-Textarea {
+    resize: none;
+    min-height: 100px;
+}
+
+.Form-Button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 30px;
+    background-color: #FF5330;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.Form-Button:hover {
+    background-color: #e04321;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.Form-Button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ================================================ */
+
+/**
+ * ============================================================================
+ *  9. FOOTER SECTION STYLES
+ *  Styling area footer gelap, link navigasi, dan copyright.
+ * ============================================================================
+ */
+.Footer-Section {
+    background-color: #111827;
+    width: 100%;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.Footer-Container {
+    width: 100%;
+    max-width: 1320px;
+    padding: 0 50px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.Footer-Content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 60px;
+    padding-bottom: 60px;
+}
+
+.Footer-Column.Brand-Column {
+    flex: 1.8;
+    max-width: 100%;
+}
+
+.Footer-Logo {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+    letter-spacing: 1px;
+}
+
+.Footer-Desc {
+    font-size: 15px;
+    color: #9CA3AF;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.Footer-Contact-List {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.Footer-Contact-Item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: #D1D5DB;
+    line-height: 1.5;
+}
+
+.Contact-Icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #FF5330;
+}
+
+.Footer-Column {
+    flex: 1;
+}
+
+.Footer-Title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 25px 0;
+    color: #ffffff;
+}
+
+.Footer-Links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.Footer-Links li a {
+    text-decoration: none;
+    color: #9CA3AF;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.Footer-Links li a:hover {
+    color: #FF5330;
+}
+
+.Footer-Line {
+    width: 100%;
+    height: 1px;
+    background-color: #374151;
+    margin-bottom: 30px;
+}
+
+.Footer-Bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Copyright-Text {
+    font-size: 14px;
+    color: #9CA3AF;
+}
+
+.Footer-Socials {
+    display: flex;
+    gap: 15px;
+}
+
+.Social-Box-Footer {
+    width: 40px;
+    height: 40px;
+    background-color: #1F2937;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.Social-Box-Footer:hover {
+    background-color: #FF5330;
+    transform: translateY(-3px);
+}
+
+/* =============================================== */
+
+/**
+ *  10. DEVELOPER CREDIT
+ *  Badge nama developer yang melayang di pojok kanan bawah.
+ * ============================================================================
+ */
+.Dev-Credit {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.Dev-Name {
+    color: #000000;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.Dev-Text {
+    color: #FF5330;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* ================================================ */
+
+@media screen and (max-width: 318px) {
+    body>* {
+        display: none !important;
+    }
+
+    body::before {
+        content: "Maaf, ukuran layar terlalu kecil untuk menampilkan website ini. Silakan akses menggunakan perangkat dengan layar yang lebih besar.";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #FF5330;
+        color: #ffffff;
+        font-size: 18px;
+        text-align: center;
+        padding: 20px;
+        font-family: 'Poppins', sans-serif;
+    }
+}
+
+/**
+ * ============================================================================
+ *  11. RESPONSIVE STYLES (MOBILE)
+ *  Penyesuaian layout untuk layar smartphone (max-width: 767px).
+ * ============================================================================
+ */
+@media screen and (max-width: 767px) {
+
+    /* Menyesuaikan scroll margin untuk tinggi navbar mobile */
+    section[id] {
+        scroll-margin-top: 60px;
+    }
+
+    /* Navbar Container */
+    .Navbar-Container {
+        height: 60px;
+        padding: 0 15px;
+    }
+
+    /* Logo - Left side */
+    .Logo .Text-Logo {
+        font-size: 20px;
+    }
+
+    /* Hide desktop menu */
+    .Navbar-Menu {
+        display: none;
+    }
+
+    /* Right Side - Cart + Hamburger */
+    .Right-Side {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .Cart-Icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .cart-counter {
+        min-width: 16px;
+        padding: 0 3px;
+        border-radius: 8px;
+        height: 16px;
+        font-size: 10px;
+        top: -4px;
+        right: -6px;
+    }
+
+    /* Mobile Menu Button - visible on mobile */
+    .Mobile-Menu-Btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding-right: 15px;
+    }
+
+    .Mobile-Menu-Btn svg {
+        width: 26px;
+        height: 26px;
+        color: #000000;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .Mobile-Menu-Btn svg:hover {
+        color: #FF5330;
+    }
+
+    .Mobile-Menu-Btn svg:active {
+        color: #FF5330;
+    }
+
+    .Mobile-Menu-Btn .close-icon {
+        display: none;
+    }
+
+    .Mobile-Menu-Btn.active .menu-icon {
+        display: none;
+    }
+
+    .Mobile-Menu-Btn.active .close-icon {
+        display: block;
+    }
+
+    /* Mobile Dropdown Menu */
+    .Mobile-Dropdown {
+        display: none;
+        background-color: #ffffff;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 15px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 2000;
+    }
+
+    .Mobile-Dropdown.active {
+        display: block;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    .Mobile-Dropdown.closing {
+        animation: slideUp 0.3s ease-out forwards;
+    }
+
+    .Mobile-Menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .Mobile-Menu li {
+        text-align: center;
+        padding: 8px 0;
+    }
+
+    .Mobile-Menu li a {
+        text-decoration: none;
+        color: #000000;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .Right-Side {
+        margin-right: -15px;
+    }
+
+    .Mobile-Menu li a:hover {
+        color: #FF5330;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        to {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    }
+
+    /* Home Section - Mobile Styles */
+    .Home-Section {
+        padding-top: 60px;
+    }
+
+    .Home-Section::before {
+        display: none;
+    }
+
+    .Home-Container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .Home-Content {
+        text-align: center;
+        max-width: 100%;
+        order: 1;
+    }
+
+    .Slogan-Container {
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 9px;
+        margin-bottom: 30px;
+    }
+
+    .Slogan-Circle {
+        width: 7px;
+        height: 7px;
+    }
+
+    .Slogan {
+        font-size: 10.7px;
+    }
+
+    .Home-Title {
+        font-size: 32px;
+    }
+
+    .Home-Description {
+        font-size: 17px;
+    }
+
+    .Button-Container {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+    }
+
+    .Home-Button,
+    .Watch-Video-Button {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 30px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .Home-Image {
+        display: none;
+    }
+
+    /* Info Box */
+    .Info-Box {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 35px;
+        box-sizing: border-box;
+        gap: 10px;
+    }
+
+    .Info-Box .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        flex: 1;
+    }
+
+    .Info-Box .box h1 {
+        font-size: 30px;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .Info-Box .box p {
+        font-size: 12px;
+        margin: 0;
+        text-align: center;
+        word-break: break-word;
+        line-height: 1.2;
+        white-space: normal;
+    }
+
+    .Info-Box span {
+        display: inline-block;
+        width: 2px;
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0.5);
+        align-self: center;
+        flex-shrink: 0;
+    }
+
+    .Home-Image {
+        margin-top: 40px;
+        margin-bottom: -40px;
+    }
+
+    /* About Section - Mobile Styles */
+    .About-Section {
+        padding-top: 60px;
+        padding-bottom: 10px;
+    }
+
+    .About-Container {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 70px;
+    }
+
+    .About-Image {
+        width: 100%;
+        order: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .About-Image img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .About-Overlay-Box1 {
+        top: -15px;
+        left: -15px;
+    }
+
+    .Overlay-TextWrapper1 {
+        padding: 12px 15px;
+    }
+
+    .Overlay-Text-Box11 {
+        font-size: 12px;
+    }
+
+    .Overlay-Text-Box22 {
+        font-size: 22px;
+    }
+
+    .About-Overlay-Box2 {
+        bottom: -20px;
+        right: -15px;
+        padding: 15px;
+    }
+
+    .Overlay-Icon-Box {
+        width: 40px;
+        height: 40px;
+    }
+
+    .Overlay-Icon-Box svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .Overlay-Text-Box33 {
+        font-size: 22px;
+    }
+
+    .Overlay-Text-Box44 {
+        font-size: 11px;
+    }
+
+    .About-Content {
+        width: 100%;
+        order: 2;
+        text-align: left;
+    }
+
+    .About-Title {
+        font-size: 16px;
+    }
+
+    .About-Subtitle {
+        font-size: 33px;
+    }
+
+    .About-Description {
+        font-size: 16px;
+    }
+
+    .About-Features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .Feature-Text {
+        font-size: 14px;
+    }
+
+    .Stats-Container {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px;
+        gap: 15px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .Stats-Box {
+        padding: 25px;
+    }
+
+    .Stats-IconWrapper {
+        padding: 10px;
+    }
+
+    .Stats-Number {
+        font-size: 22px;
+    }
+
+    .Stats-Label {
+        font-size: 12px;
+    }
+
+    /* Products Section - Mobile Styles */
+    .Products-Section {
+        padding-top: 60px;
+    }
+
+    .Products-Container {
+        padding: 0 20px;
+    }
+
+    .Products-Slogan {
+        font-size: 12px;
+        padding: 6px 15px;
+    }
+
+    .Products-Title {
+        font-size: 28px;
+    }
+
+    .Products-Description {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .Products-Swiper-Container {
+        padding: 0 20px;
+        margin-top: 20px;
+    }
+
+    .Product-Card {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .Products-Swiper .swiper-button-prev,
+    .Products-Swiper .swiper-button-next {
+        display: none;
+    }
+
+    /* Cart Notification - Mobile Style */
+    .cart-notification {
+        padding: 20px 25px;
+        width: 85%;
+        max-width: 300px;
+        gap: 12px;
+    }
+
+    .cart-notification-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .cart-notification-text {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    /* Keunggulan Section - Mobile */
+    .Keunggulan-Section {
+        padding-top: 60px;
+        padding-bottom: 25px;
+    }
+
+    .Keunggulan-Container {
+        padding: 0 20px;
+    }
+
+    .Keunggulan-Slogan {
+        font-size: 12px;
+        padding: 6px 15px;
+    }
+
+    .Keunggulan-Title {
+        font-size: 28px;
+    }
+
+    .Keunggulan-Description {
+        font-size: 14px;
+    }
+
+    .Keunggulan-Grid-Container {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+        margin-top: 30px;
+    }
+    
+    .Keunggulan-Box {
+        padding: 25px;
+    }
+
+    /* Categories Section - Mobile */
+    .Categories-Section {
+        padding-top: 60px;
+    }
+
+    .Categories-Container {
+        padding: 0 20px;
+    }
+
+    .Categories-Slogan {
+        font-size: 12px;
+        padding: 6px 15px;
+    }
+
+    .Categories-Title {
+        font-size: 28px;
+    }
+
+    .Categories-Description {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .Category-Grid-Container {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .Category-Box-Content {
+        left: 20px;
+        bottom: 20px;
+    }
+
+    /* Contact Section - Mobile */
+    .Contact-Section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .Contact-Container {
+        padding: 0 20px;
+    }
+
+    .Contact-Title {
+        font-size: 28px;
+    }
+
+    .Contact-Description {
+        font-size: 14px;
+    }
+
+    .Contact-Content-Container {
+        flex-direction: column;
+        gap: 50px;
+        margin-top: 50px;
+        padding: 0 20px;
+    }
+
+    .Contact-Info h4 {
+        font-size: 20px;
+    }
+
+    .Contact-Info p {
+        font-size: 14px;
+    }
+
+    .Info-Box-Text h4 {
+        font-size: 15px;
+    }
+
+    .Info-Box-Text p {
+        font-size: 13px;
+    }
+
+    .Contact-Form-Wrapper {
+        padding: 30px 25px;
+    }
+
+    .Social-Icon-Box svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Footer Section - Mobile */
+    .Footer-Section {
+        padding-bottom: 30px;
+    }
+
+    .Footer-Container {
+        padding: 0 20px;
+    }
+
+    .Footer-Content {
+        flex-direction: column;
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+
+    .Brand-Column {
+        max-width: 100%;
+    }
+
+    .Footer-Bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .Copyright-Text {
+        font-size: 13px;
+        order: 2;
+    }
+
+    .Footer-Socials {
+        order: 1;
+    }
+}
+
+/**
+ * ============================================================================
+ *  12. RESPONSIVE STYLES (TABLET)
+ *  Penyesuaian layout untuk layar tablet (768px - 1024px).
+ * ============================================================================
+ */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    /* Navbar Container - Tablet Style */
+    .Navbar-Container {
+        height: 70px;
+        padding: 0 30px;
+    }
+
+    /* Logo - Left side - Tablet Style */
+    .Logo .Text-Logo {
+        font-size: 24px;
+    }
+
+    /* Show desktop menu - Tablet Style */
+    .Navbar-Menu {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Menu items - Tablet Style */
+    .Menu {
+        gap: 20px;
+    }
+
+    .Menu li a {
+        font-size: 14px;
+    }
+
+    /* Right Side - Cart only */
+    .Right-Side {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-right: 5px;
+    }
+
+    .Cart-Icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .cart-counter {
+        min-width: 18px;
+        padding: 0 4px;
+        border-radius: 9px;
+        height: 18px;
+        font-size: 11px;
+        top: -5px;
+        right: -8px;
+    }
+
+    /* Hide Mobile Menu Button - Tablet Style */
+    .Mobile-Menu-Btn {
+        display: none;
+    }
+
+    /* Hide Mobile Dropdown */
+    .Mobile-Dropdown {
+        display: none;
+    }
+
+    /* Home Section - Tablet Styles */
+    .Home-Section {
+        padding-top: 80px;
+    }
+
+    .Home-Section::before {
+        display: none;
+    }
+
+    .Home-Container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        gap: 30px;
+        text-align: center;
+        max-width: 550px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+
+    .Home-Content {
+        text-align: center;
+        max-width: 100%;
+        order: 1;
+    }
+
+    .Slogan-Container {
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 14px;
+        margin-bottom: 30px;
+    }
+
+    .Slogan-Circle {
+        width: 8px;
+        height: 8px;
+    }
+
+    .Slogan {
+        font-size: 13px;
+    }
+
+    .Home-Title {
+        font-size: 48px;
+    }
+
+    .Home-Description {
+        font-size: 20px;
+    }
+
+    .Button-Container {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Home-Button,
+    .Watch-Video-Button {
+        display: inline-flex;
+        justify-content: center;
+        width: auto;
+        padding: 15px 25px;
+        font-size: 16px;
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
+
+    .Home-Image {
+        display: none;
+    }
+
+    .Info-Box {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 35px;
+        box-sizing: border-box;
+        gap: 10px;
+    }
+
+    .Info-Box .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        flex: 1;
+    }
+
+    .Info-Box .box h1 {
+        font-size: 33px;
+        margin: 0;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    .Info-Box .box p {
+        font-size: 13px;
+        margin: 0;
+        text-align: center;
+        word-break: break-word;
+        line-height: 1.2;
+        white-space: normal;
+    }
+
+    .Info-Box span {
+        display: inline-block;
+        width: 2px;
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0.5);
+        align-self: center;
+        flex-shrink: 0;
+    }
+
+    .Home-Image {
+        margin-top: 40px;
+    }
+
+    /* About Section - Tablet Styles */
+    .About-Section {
+        padding-top: 70px;
+        padding-bottom: 10px;
+    }
+
+    .About-Container {
+        flex-direction: column;
+        padding: 40px 30px;
+        gap: 70px;
+    }
+
+    .About-Image {
+        width: 100%;
+        order: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .About-Image img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .About-Overlay-Box1 {
+        top: -20px;
+        left: -20px;
+    }
+
+    .Overlay-TextWrapper1 {
+        padding: 15px 18px;
+    }
+
+    .Overlay-Text-Box11 {
+        font-size: 14px;
+    }
+
+    .Overlay-Text-Box22 {
+        font-size: 26px;
+    }
+
+    .About-Overlay-Box2 {
+        bottom: -25px;
+        right: -20px;
+        padding: 18px;
+    }
+
+    .Overlay-Icon-Box {
+        width: 45px;
+        height: 45px;
+    }
+
+    .Overlay-Icon-Box svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .Overlay-Text-Box33 {
+        font-size: 25px;
+    }
+
+    .Overlay-Text-Box44 {
+        font-size: 12px;
+    }
+
+    .About-Content {
+        width: 100%;
+        order: 2;
+        text-align: left;
+    }
+
+    .About-Title {
+        font-size: 17px;
+    }
+
+    .About-Subtitle {
+        font-size: 35px;
+    }
+
+    .About-Description {
+        font-size: 17px;
+    }
+
+    .About-Features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .Feature-Text {
+        font-size: 14px;
+    }
+
+    .Stats-Container {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 0 30px;
+        gap: 15px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .Stats-Box {
+        padding: 25px;
+    }
+
+    .Stats-IconWrapper {
+        padding: 12px;
+    }
+
+    .Stats-Number {
+        font-size: 22px;
+    }
+
+    .Stats-Label {
+        font-size: 14px;
+    }
+
+    /* Products Section - Tablet Styles */
+    .Products-Section {
+        padding-top: 70px;
+    }
+
+    .Products-Container {
+        padding: 0 30px;
+    }
+
+    .Products-Title {
+        font-size: 36px;
+    }
+
+    .Products-Swiper-Container {
+        padding: 0 30px;
+    }
+
+    .Product-Card {
+        max-width: 100%;
+    }
+
+    /* Cart Notification - Tablet Style */
+    .cart-notification {
+        padding: 25px 35px;
+    }
+
+    /* Keunggulan Section - Tablet */
+    .Keunggulan-Section {
+        padding-top: 70px;
+        padding-bottom: 25px;
+    }
+
+    .Keunggulan-Container {
+        padding: 0 30px;
+    }
+
+    .Keunggulan-Title {
+        font-size: 36px;
+    }
+
+    .Keunggulan-Grid-Container {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 30px;
+    }
+
+    /* Categories Section - Tablet Styles */
+    .Categories-Section {
+        padding-top: 70px;
+    }
+
+    .Categories-Container {
+        padding: 0 30px;
+    }
+
+    .Categories-Title {
+        font-size: 36px;
+    }
+
+    .Category-Grid-Container {
+        padding: 0 30px;
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .Category-Box-Content {
+        left: 25px;
+        bottom: 25px;
+    }
+
+    /* Contact Section - Tablet */
+    .Contact-Section {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .Contact-Container {
+        padding: 0 30px;
+    }
+
+    .Contact-Title {
+        font-size: 36px;
+    }
+
+    .Contact-Content-Container {
+        flex-direction: column;
+        gap: 50px;
+        padding: 0 30px;
+        margin-top: 50px;
+    }
+
+    /* Footer Section - Tablet */
+    .Footer-Section {
+        padding-bottom: 30px;
+    }
+
+    .Footer-Container {
+        padding: 0 30px;
+    }
+
+    .Footer-Content {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 40px;
+        padding-bottom: 50px;
+    }
+
+    .Brand-Column {
+        grid-column: 1;
+        grid-row: 1;
+        max-width: 100%;
+    }
+    
+    .Footer-Column:nth-child(2) {
+        grid-column: 2;
+        grid-row: 1;
+    }
+}
+
+/**
+ * ============================================================================
+ *  13. RESPONSIVE STYLES (LARGE DESKTOP)
+ *  13. RESPONSIVE STYLES (WIDER DESKTOP)
+ *  Penyesuaian untuk layar di atas 1440px (Monitor Besar / Ultra-wide).
+ * ============================================================================
+ */
+@media screen and (min-width: 1440px) {
+    .Navbar-Container {
+        padding: 0 100px;
+    }
+
+    .Home-Container,
+    .About-Container,
+    .Stats-Container,
+    .Products-Container,
+    .Products-Swiper-Container,
+    .Keunggulan-Container,
+    .Keunggulan-Grid-Container,
+    .Categories-Container,
+    .Category-Grid-Container,
+    .Contact-Container,
+    .Contact-Content-Container,
+    .Footer-Container {
+        max-width: 1500px;
+    }
+
+    .Home-Title {
+        font-size: 60px;
+    }
+
+    .Home-Description {
+        font-size: 22px;
+        max-width: 600px;
+    }
+
+    .Home-Section::before {
+        width: 650px;
+        height: 650px;
+        right: 5%;
+    }
+
+    .Home-Image img {
+        width: 550px;
+        height: 550px;
+    }
+
+    .Category-Grid-Container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

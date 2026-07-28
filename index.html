@@ -1,0 +1,1354 @@
+<!--
+ *  =========================================================================================
+ *  🚀 AEROSTREET LANDING PAGE - MAIN STRUCTURE
+ *  =========================================================================================
+
+ *  👤 Author       : Winanda Dev
+ *  📅 Year         : 2026
+ *  📦 Description  : Struktur HTML5 semantik untuk landing page Aerostreet.
+ *                  Disusun dengan prinsip SEO friendly, OG Image, dan aksesibilitas.
+
+ *  📂 STRUKTUR HALAMAN :
+ *  ---------------------------------------------------------------------------------------
+ *  1. 🎩 Header         : Navigasi utama, Logo, dan Menu Mobile.
+ *  2. 🏠 Home           : Hero section dengan slogan dan CTA.
+ *  3. ℹ️ About          : Informasi brand, sejarah, dan statistik.
+ *  4. 👟 Products       : Slider showcase produk unggulan (Swiper.js).
+ *  5. ✨ Keunggulan     : Grid fitur dan kelebihan produk.
+ *  6. 📂 Categories     : Kategori produk visual.
+ *  7. 📞 Contact        : Informasi kontak dan formulir pesan.
+ *  8. 🦶 Footer         : Tautan cepat, sosial media, dan copyright.
+
+ *  🛠️ Library :
+ *     - Swiper.js (Slider)
+ *     - AOS (Animate On Scroll)
+ *     - GSAP (GreenSock Animation Platform)
+
+ *  =========================================================================================
+-->
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Basic -->
+    <link rel="canonical" href="https://aerostreet.co.id" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Jual sepatu Aerostreet original. Sneakers lokal berkualitas, nyaman, dan trendi dengan harga terjangkau. Temukan koleksi terbaru Aerostreet di sini.">
+    <meta name="keywords"
+        content="Aerostreet, Sepatu Lokal, Sneakers Indonesia, Sepatu Murah Berkualitas, Aerostreet Osaka, Aerostreet Hoops">
+    <meta name="author" content="Aerostreet Indonesia">
+
+    <!-- Social Media Tags (Open Graph & Twitter) -->
+    <meta property="og:title" content="Aerostreet - Now Everyone Can Buy a Good Shoes">
+    <meta property="og:description"
+        content="Temukan koleksi baru Aerostreet. Dirancang untuk jalanan, dibuat untuk masa depan. Rasakan kenyamanan dan gaya yang belum pernah ada sebelumnya.">
+    <meta property="og:image" content="https://winanda150.github.io/aerostreet-landing-page/Elemen/OG%20IMAGE.jpg">
+    <meta property="og:url" content="https://aerostreet.co.id">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aerostreet - Sepatu Lokal Kualitas Global">
+    <meta name="twitter:description"
+        content="Dapatkan sepatu Aerostreet original dengan harga terbaik. Now Everyone Can Buy a Good Shoes.">
+    <meta name="twitter:image" content="https://winanda150.github.io/aerostreet-landing-page/Elemen/OG%20IMAGE.jpg">
+
+    <link rel="shortcut icon" href="Elemen/Logo%20Product%20Aerostreet.ico" type="image/x-icon">
+    <title>Aerostreet - Now Everyone Can Buy a Good Shoes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 
+    ============================================================================
+    1. HEADER SECTION (Navbar & Mobile Menu)
+    ============================================================================
+    -->
+    <header data-aos-anchor="[data-aos-anchor-navbar]">
+        <div class="Navbar-Container" data-aos-anchor-navbar>
+            <!-- Logo - Left side -->
+            <div class="Logo">
+                <span class="Text-Logo">
+                    <span style="color: #000000;">Aero</span><span style="color: #FF5330;">street</span>
+                </span>
+            </div>
+            <!-- Navbar Menu - Center -->
+            <nav class="Navbar-Menu">
+                <ul class="Menu">
+                    <li><a href="#Home">Home</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#Products">Products</a></li>
+                    <li><a href="#Categories">Categories</a></li>
+                    <li><a href="#Contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="Right-Side">
+                <div class="Cart">
+                    <a href="cart.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="Cart-Icon">
+                            <circle cx="8" cy="21" r="1"></circle>
+                            <circle cx="19" cy="21" r="1"></circle>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                            </path>
+                        </svg>
+                    </a>
+                    <span id="cartCounter" class="cart-counter"></span>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button class="Mobile-Menu-Btn" id="mobileMenuBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6 menu-icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6 close-icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div class="Mobile-Dropdown" id="mobileDropdown">
+            <ul class="Mobile-Menu">
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#Products">Products</a></li>
+                <li><a href="#Categories">Categories</a></li>
+                <li><a href="#Contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- 
+        ============================================================================
+        2. HOME SECTION (Hero Banner)
+        Bagian utama dengan slogan, judul, dan CTA.
+        ============================================================================
+        -->
+        <section id="Home" class="Home-Section">
+            <div class="Home-Container">
+                <!-- Home Content - Left Side (Text) -->
+                <div class="Home-Content">
+                    <div class="Slogan-Container" data-aos="fade-down" data-aos-duration="1000"
+                        data-aos-anchor="[data-aos-anchor-navbar]">
+                        <span class="Slogan-Circle"></span>
+                        <span class="Slogan">Now Everyone Can Buy a Good Shoes</span>
+                    </div>
+                    <!-- Gunakan H1 di sini untuk keyword utama -->
+                    <h1 class="Home-Title" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200"
+                        data-aos-anchor="[data-aos-anchor-navbar]">Berjalan Dengan Percaya Diri</h1>
+                    <p class="Home-Description" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200"
+                        data-aos-anchor="[data-aos-anchor-navbar]">Temukan koleksi baru Aerostreet. Dirancang untuk
+                        jalanan, dibuat untuk masa depan. Rasakan kenyamanan dan gaya yang belum pernah ada sebelumnya.
+                    </p>
+                    <div class="Button-Container">
+                        <!-- Wrapper div untuk menangani animasi AOS, memisahkan konflik transform dengan hover button -->
+                        <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600"
+                            data-aos-anchor="[data-aos-anchor-navbar]">
+                            <a href="#Products" class="Home-Button">
+                                Shop Now
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="Home-Button-Icon">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700"
+                            data-aos-anchor="[data-aos-anchor-navbar]">
+                            <a href="https://youtu.be/cYaL7g2M6kA?si=d7lPkG3lo03GBS34" target="_blank"
+                                rel="noopener noreferrer" class="Watch-Video-Button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="Watch-Icon">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                                </svg>
+                                Watch Video
+                            </a>
+                        </div>
+                    </div>
+                    <div class="Info-Box">
+                        <div class="box" data-aos="fade-up" data-aos-duration="800" data-aos-delay="900"
+                            data-aos-anchor="[data-aos-anchor-navbar]">
+                            <h3>10+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <span data-aos="fade-up" data-aos-duration="800" data-aos-delay="900"
+                            data-aos-anchor="[data-aos-anchor-navbar]"></span>
+                        <div class="box" data-aos="fade-up" data-aos-duration="800" data-aos-delay="1100"
+                            data-aos-anchor="[data-aos-anchor-navbar]">
+                            <h3>18K+</h3>
+                            <p>Daily Production</p>
+                        </div>
+                        <span data-aos="fade-up" data-aos-duration="800" data-aos-delay="1100"
+                            data-aos-anchor="[data-aos-anchor-navbar]"></span>
+                        <div class="box" data-aos="fade-up" data-aos-duration="800" data-aos-delay="1300"
+                            data-aos-anchor="[data-aos-anchor-navbar]">
+                            <h3>5M+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Home Image - Right Side (Shoes) -->
+                <div class="Home-Image" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
+                    <img src="Elemen/Sepatu%20Aerostreet%20Osaka.webp" alt="Aerostreet Osaka Shoes" fetchpriority="high"
+                        width="450" height="450">
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================================================
+        3. ABOUT SECTION
+        Informasi mengenai sejarah, rekor MURI, dan statistik perusahaan.
+        ============================================================================
+        -->
+        <section id="About" class="About-Section">
+            <div class="About-Container">
+                <!-- About Image - Left Side (Muri Record Holder) -->
+                <div class="About-Image" data-aos="fade-right" data-aos-duration="1000">
+                    <img loading="lazy"
+                        src="https://cdn0-production-images-kly.akamaized.net/XyiAVJN-1zxsOG_nnVFQuJSRCGA=/0x1892:2774x3455/1280x720/filters:quality(75):strip_icc()/kly-media-production/medias/5014379/original/098919800_1732092517-Aerostreet_X_Wonderful_Indonesia_Didukung_Shopee_Pecahkan_Rekor_MURI__Penjualan_Sepatu_Terbanyak_dalam_10_Menit_Secara_Daring.jpg"
+                        alt="Rekor MURI Aerostreet Penjualan Sepatu Terbanyak" width="600" height="400">
+
+                    <!-- Overlay Box 1 - Top Left -->
+                    <div class="About-Overlay-Box1">
+                        <span class="Overlay-TextWrapper1">
+                            <span class="Overlay-Text-Box11">Established</span>
+                            <span class="Overlay-Text-Box22">2015</span>
+                        </span>
+                    </div>
+
+                    <!-- Overlay Box 2 - Bottom Right -->
+                    <div class="About-Overlay-Box2">
+                        <div class="Overlay-Icon-Box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526">
+                                </path>
+                                <circle cx="12" cy="8" r="6"></circle>
+                            </svg>
+                        </div>
+                        <div class="Overlay-TextWrapper2">
+                            <span class="Overlay-Text-Box33">MURI</span>
+                            <span class="Overlay-Text-Box44">Record Holder</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Content - Right Side (Text) -->
+                <div class="About-Content" data-aos="fade-left" data-aos-duration="1000">
+                    <h2 class="About-Title">About Aerostreet</h2>
+                    <h2 class="About-Subtitle">Membuat <span style="color: #FF5330;">Alas Kaki</span> Berkualitas Sejak
+                        2015
+                    </h2>
+                    <p class="About-Description">Aerostreet adalah merek terkemuka di industri fashion, dikenal dengan
+                        desain unik dan bahan berkualitas tinggi. Misi kami adalah menyediakan alas kaki yang bergaya
+                        dan
+                        nyaman bagi pelanggan kami yang membuat mereka merasa percaya diri dan berdaya.</p>
+                    <p class="About-Description">Lahir di Klaten, Jawa Tengah, Indonesia, kami percaya bahwa setiap
+                        orang
+                        berhak mendapatkan akses terhadap alas kaki berkualitas. Itu sebabnya kami menciptakan slogan
+                        kami :
+                        <b style="color: #000000;">"Now Everyone Can Buy a Good Shoes".</b>
+                    </p>
+
+                    <!-- Features Grid -->
+                    <div class="About-Features">
+                        <div class="Feature-Item">
+                            <div class="Feature-Icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <span class="Feature-Text">Bahan Berkualitas Premium</span>
+                        </div>
+                        <div class="Feature-Item">
+                            <div class="Feature-Icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <span class="Feature-Text">Harga Terjangkau</span>
+                        </div>
+                        <div class="Feature-Item">
+                            <div class="Feature-Icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <span class="Feature-Text">Trend Design</span>
+                        </div>
+                        <div class="Feature-Item">
+                            <div class="Feature-Icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <span class="Feature-Text">Produk Lokal Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats About - Grid Layout -->
+            <div class="Stats-Container">
+                <!-- Box 1 -->
+                <div class="Stats-Box" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="0">
+                    <div class="Stats-IconWrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-award w-7 h-7 text-[#ff4b27] group-hover:text-white transition-colors Stats-Icon"
+                            aria-hidden="true" code-path="src/sections/About.tsx:180:17">
+                            <path
+                                d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526">
+                            </path>
+                            <circle cx="12" cy="8" r="6"></circle>
+                        </svg>
+                    </div>
+                    <span class="Stats-Number">20K</span>
+                    <span class="Stats-Label">Sold In 10 Mins</span>
+                </div>
+
+                <!-- Box 2 -->
+                <div class="Stats-Box" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                    <div class="Stats-IconWrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-store w-7 h-7 text-[#ff4b27] group-hover:text-white transition-colors Stats-Icon"
+                            aria-hidden="true" code-path="src/sections/About.tsx:180:17">
+                            <path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"></path>
+                            <path
+                                d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244">
+                            </path>
+                            <path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"></path>
+                        </svg>
+                    </div>
+                    <span class="Stats-Number">4,5M+</span>
+                    <span class="Stats-Label">Social Followers</span>
+                </div>
+
+                <!-- Box 3 -->
+                <div class="Stats-Box" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+                    <div class="Stats-IconWrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="Stats-Icon">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <span class="Stats-Number">3,400+</span>
+                    <span class="Stats-Label">Dedicated Employees</span>
+                </div>
+
+                <!-- Box 4 -->
+                <div class="Stats-Box" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">
+                    <div class="Stats-IconWrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-trending-up w-7 h-7 text-[#ff4b27] group-hover:text-white transition-colors Stats-Icon"
+                            aria-hidden="true" code-path="src/sections/About.tsx:180:17">
+                            <path d="M16 7h6v6"></path>
+                            <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+                        </svg>
+                    </div>
+                    <span class="Stats-Number">500K+</span>
+                    <span class="Stats-Label">Monthly Stock</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================================================
+        4. PRODUCTS SECTION (Slider)
+        Showcase produk unggulan menggunakan Swiper.js.
+        ============================================================================
+        -->
+        <section id="Products" class="Products-Section">
+            <div class="Products-Container">
+                <div class="Products-Text-Container" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="Products-Slogan">Koleksi Terbaru</span>
+                    <h2 class="Products-Title">
+                        <span class="Title-Normal1">Produk</span>
+                        <span class="Title-Accent1">Unggulan</span>
+                    </h2>
+                    <p class="Products-Description">Temukan koleksi Produk Aerostreet terbaru dengan desain modern dan
+                        kualitas terbaik</p>
+                </div>
+            </div>
+
+            <!-- Slider Library Swiper js -->
+            <div class="Products-Swiper-Container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="swiper Products-Swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides - Product Cards -->
+                        <div class="swiper-slide">
+                            <div class="Product-Card">
+                                <div class="Product-Image">
+                                    <img loading="lazy" src="Elemen/Sepatu/Sepatu%20Denim%20Caknan%20Putih%20Biru.jpeg"
+                                        alt="Denim Caknan Putih Hitam" width="350" height="350">
+                                </div>
+                                <div class="Product-Info">
+                                    <span class="Product-Category">Sepatu</span>
+                                    <h3 class="Product-Name">Denim Caknan Putih Hitam</h3>
+                                    <div class="Product-Rating">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="Rating-Icon">
+                                            <path
+                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                            </path>
+                                        </svg>
+                                        <span class="Rating-Number">4.9</span>
+                                        <!-- Garis Vertikal -->
+                                        <span class="Rating-Separator"></span>
+                                        <span class="Rating-Sold">Terjual 3.1K+</span>
+                                    </div>
+                                    <div class="Product-Price">
+                                        <span class="Price-Final">Rp 219.900</span>
+                                        <span class="Price-Original">Rp 439.800</span>
+                                    </div>
+                                    <button class="truck-button">
+                                        <span class="default"
+                                            style="display: inline-flex; align-items: center; gap: 8px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-shopping-cart w-5 h-5 transition-transform group-hover:scale-110"
+                                                aria-hidden="true">
+                                                <circle cx="8" cy="21" r="1"></circle>
+                                                <circle cx="19" cy="21" r="1"></circle>
+                                                <path
+                                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                </path>
+                                            </svg>
+                                            <span>Add to Cart</span>
+                                        </span>
+                                        <div class="truck">
+                                            <div class="wheel"></div>
+                                            <div class="back"></div>
+                                            <div class="front"></div>
+                                            <div class="box"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="Product-Card">
+                                <div class="Product-Image">
+                                    <img loading="lazy"
+                                        src="Elemen/Pakaian%20Pria%20dan%20Wanita/T%20Shirt%20Boxy%20With%20Muse%20Ivory.jpeg"
+                                        alt="T Shirt Boxy With Muse Ivory">
+                                </div>
+                                <div class="Product-Info">
+                                    <span class="Product-Category">Apparel</span>
+                                    <h3 class="Product-Name">T Shirt Boxy With Muse Ivory</h3>
+                                    <div class="Product-Rating">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="Rating-Icon">
+                                            <path
+                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                            </path>
+                                        </svg>
+                                        <span class="Rating-Number">4.9</span>
+                                        <!-- Garis Vertikal -->
+                                        <span class="Rating-Separator"></span>
+                                        <span class="Rating-Sold">Terjual 2.7K+</span>
+                                    </div>
+                                    <div class="Product-Price">
+                                        <span class="Price-Final">Rp 89.900</span>
+                                        <span class="Price-Original">Rp 179.800</span>
+                                    </div>
+                                    <button class="truck-button">
+                                        <span class="default"
+                                            style="display: inline-flex; align-items: center; gap: 8px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-shopping-cart w-5 h-5 transition-transform group-hover:scale-110"
+                                                aria-hidden="true">
+                                                <circle cx="8" cy="21" r="1"></circle>
+                                                <circle cx="19" cy="21" r="1"></circle>
+                                                <path
+                                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                </path>
+                                            </svg>
+                                            <span>Add to Cart</span>
+                                        </span>
+                                        <div class="truck">
+                                            <div class="wheel"></div>
+                                            <div class="back"></div>
+                                            <div class="front"></div>
+                                            <div class="box"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="Product-Card">
+                                <div class="Product-Image">
+                                    <img loading="lazy" src="Elemen/Sandal/Sandal%20Hugo%20Kream%20Muda%20Hitam.jpeg"
+                                        alt="Hugo Kream Muda Hitam">
+                                </div>
+                                <div class="Product-Info">
+                                    <span class="Product-Category">Sandal</span>
+                                    <h3 class="Product-Name">Hugo Kream Muda Hitam</h3>
+                                    <div class="Product-Rating">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="Rating-Icon">
+                                            <path
+                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                            </path>
+                                        </svg>
+                                        <span class="Rating-Number">4.8</span>
+                                        <!-- Garis Vertikal -->
+                                        <span class="Rating-Separator"></span>
+                                        <span class="Rating-Sold">Terjual 5.1K+</span>
+                                    </div>
+                                    <div class="Product-Price">
+                                        <span class="Price-Final">Rp 189.900</span>
+                                        <span class="Price-Original">Rp 379.800</span>
+                                    </div>
+                                    <button class="truck-button">
+                                        <span class="default"
+                                            style="display: inline-flex; align-items: center; gap: 8px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-shopping-cart w-5 h-5 transition-transform group-hover:scale-110"
+                                                aria-hidden="true">
+                                                <circle cx="8" cy="21" r="1"></circle>
+                                                <circle cx="19" cy="21" r="1"></circle>
+                                                <path
+                                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                </path>
+                                            </svg>
+                                            <span>Add to Cart</span>
+                                        </span>
+                                        <div class="truck">
+                                            <div class="wheel"></div>
+                                            <div class="back"></div>
+                                            <div class="front"></div>
+                                            <div class="box"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="Product-Card">
+                                <div class="Product-Image">
+                                    <img loading="lazy"
+                                        src="Elemen/Aksesoris%20&%20Produk%20Perawatan/Aerostreet%20Parfum%20Manly.jpeg"
+                                        alt="Aerostreet Parfum Manly">
+                                </div>
+                                <div class="Product-Info">
+                                    <span class="Product-Category">Perawatan</span>
+                                    <h3 class="Product-Name">Aerostreet Parfum Manly</h3>
+                                    <div class="Product-Rating">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="Rating-Icon">
+                                            <path
+                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                            </path>
+                                        </svg>
+                                        <span class="Rating-Number">4.9</span>
+                                        <!-- Garis Vertikal -->
+                                        <span class="Rating-Separator"></span>
+                                        <span class="Rating-Sold">Terjual 1.7K+</span>
+                                    </div>
+                                    <div class="Product-Price">
+                                        <span class="Price-Final">Rp 119.900</span>
+                                    </div>
+                                    <button class="truck-button">
+                                        <span class="default"
+                                            style="display: inline-flex; align-items: center; gap: 8px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-shopping-cart w-5 h-5 transition-transform group-hover:scale-110"
+                                                aria-hidden="true">
+                                                <circle cx="8" cy="21" r="1"></circle>
+                                                <circle cx="19" cy="21" r="1"></circle>
+                                                <path
+                                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                </path>
+                                            </svg>
+                                            <span>Add to Cart</span>
+                                        </span>
+                                        <div class="truck">
+                                            <div class="wheel"></div>
+                                            <div class="back"></div>
+                                            <div class="front"></div>
+                                            <div class="box"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="Product-Card">
+                                <div class="Product-Image">
+                                    <img loading="lazy" src="Elemen/Sepatu/Sepatu%20Orlando%20Krem%20Army%20Abu.jpeg"
+                                        alt="Orlando Krem Army Abu">
+                                </div>
+                                <div class="Product-Info">
+                                    <span class="Product-Category">Sepatu</span>
+                                    <h3 class="Product-Name">Orlando Krem Army Abu</h3>
+                                    <div class="Product-Rating">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="Rating-Icon">
+                                            <path
+                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                            </path>
+                                        </svg>
+                                        <span class="Rating-Number">4.8</span>
+                                        <!-- Garis Vertikal -->
+                                        <span class="Rating-Separator"></span>
+                                        <span class="Rating-Sold">Terjual 7.3K+</span>
+                                    </div>
+                                    <div class="Product-Price">
+                                        <span class="Price-Final">Rp 199.900</span>
+                                        <span class="Price-Original">Rp 399.800</span>
+                                    </div>
+                                    <button class="truck-button">
+                                        <span class="default"
+                                            style="display: inline-flex; align-items: center; gap: 8px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-shopping-cart w-5 h-5 transition-transform group-hover:scale-110"
+                                                aria-hidden="true">
+                                                <circle cx="8" cy="21" r="1"></circle>
+                                                <circle cx="19" cy="21" r="1"></circle>
+                                                <path
+                                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                </path>
+                                            </svg>
+                                            <span>Add to Cart</span>
+                                        </span>
+                                        <div class="truck">
+                                            <div class="wheel"></div>
+                                            <div class="back"></div>
+                                            <div class="front"></div>
+                                            <div class="box"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="Product-Card">
+                                <div class="Product-Image">
+                                    <img loading="lazy"
+                                        src="Elemen/Pakaian%20Pria%20dan%20Wanita/Hoodie%20Take%20Me%20Home%20Putih.webp"
+                                        alt="Hoodie Take Me Home Putih">
+                                </div>
+                                <div class="Product-Info">
+                                    <span class="Product-Category">Apparel</span>
+                                    <h3 class="Product-Name">Hoodie Take Me Home Putih</h3>
+                                    <div class="Product-Rating">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="Rating-Icon">
+                                            <path
+                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                            </path>
+                                        </svg>
+                                        <span class="Rating-Number">4.9</span>
+                                        <!-- Garis Vertikal -->
+                                        <span class="Rating-Separator"></span>
+                                        <span class="Rating-Sold">Terjual 3.4K+</span>
+                                    </div>
+                                    <div class="Product-Price">
+                                        <span class="Price-Final">Rp 229.900</span>
+                                        <span class="Price-Original">Rp 339.800</span>
+                                    </div>
+                                    <button class="truck-button">
+                                        <span class="default"
+                                            style="display: inline-flex; align-items: center; gap: 8px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-shopping-cart w-5 h-5 transition-transform group-hover:scale-110"
+                                                aria-hidden="true">
+                                                <circle cx="8" cy="21" r="1"></circle>
+                                                <circle cx="19" cy="21" r="1"></circle>
+                                                <path
+                                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                </path>
+                                            </svg>
+                                            <span>Add to Cart</span>
+                                        </span>
+                                        <div class="truck">
+                                            <div class="wheel"></div>
+                                            <div class="back"></div>
+                                            <div class="front"></div>
+                                            <div class="box"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="Product-Card">
+                                <div class="Product-Image">
+                                    <img loading="lazy" src="Elemen/Sandal/Sandal%20Zoe%20Kream.jpeg"
+                                        alt="Aerostreet Zoe Kream">
+                                </div>
+                                <div class="Product-Info">
+                                    <span class="Product-Category">Sandal</span>
+                                    <h3 class="Product-Name">Aerostreet Zoe Kream</h3>
+                                    <div class="Product-Rating">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="Rating-Icon">
+                                            <path
+                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                            </path>
+                                        </svg>
+                                        <span class="Rating-Number">4.7</span>
+                                        <!-- Garis Vertikal -->
+                                        <span class="Rating-Separator"></span>
+                                        <span class="Rating-Sold">Terjual 4.6K+</span>
+                                    </div>
+                                    <div class="Product-Price">
+                                        <span class="Price-Final">Rp 89.900</span>
+                                        <span class="Price-Original">Rp 179.800</span>
+                                    </div>
+                                    <button class="truck-button">
+                                        <span class="default"
+                                            style="display: inline-flex; align-items: center; gap: 8px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-shopping-cart w-5 h-5 transition-transform group-hover:scale-110"
+                                                aria-hidden="true">
+                                                <circle cx="8" cy="21" r="1"></circle>
+                                                <circle cx="19" cy="21" r="1"></circle>
+                                                <path
+                                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                </path>
+                                            </svg>
+                                            <span>Add to Cart</span>
+                                        </span>
+                                        <div class="truck">
+                                            <div class="wheel"></div>
+                                            <div class="back"></div>
+                                            <div class="front"></div>
+                                            <div class="box"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="Product-Card">
+                                <div class="Product-Image">
+                                    <img loading="lazy"
+                                        src="Elemen/Aksesoris%20&%20Produk%20Perawatan/Aerostreet%20Parfum%20Couple.jpeg"
+                                        alt="Aerostreet Parfum Couple">
+                                </div>
+                                <div class="Product-Info">
+                                    <span class="Product-Category">Perawatan</span>
+                                    <h3 class="Product-Name">Aerostreet Parfum Couple</h3>
+                                    <div class="Product-Rating">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="Rating-Icon">
+                                            <path
+                                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                            </path>
+                                        </svg>
+                                        <span class="Rating-Number">4.8</span>
+                                        <!-- Garis Vertikal -->
+                                        <span class="Rating-Separator"></span>
+                                        <span class="Rating-Sold">Terjual 1.7K+</span>
+                                    </div>
+                                    <div class="Product-Price">
+                                        <span class="Price-Final">Rp 119.900</span>
+                                    </div>
+                                    <button class="truck-button">
+                                        <span class="default"
+                                            style="display: inline-flex; align-items: center; gap: 8px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-shopping-cart w-5 h-5 transition-transform group-hover:scale-110"
+                                                aria-hidden="true">
+                                                <circle cx="8" cy="21" r="1"></circle>
+                                                <circle cx="19" cy="21" r="1"></circle>
+                                                <path
+                                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                </path>
+                                            </svg>
+                                            <span>Add to Cart</span>
+                                        </span>
+                                        <div class="truck">
+                                            <div class="wheel"></div>
+                                            <div class="back"></div>
+                                            <div class="front"></div>
+                                            <div class="box"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================================================
+        5. KEUNGGULAN SECTION
+        Grid fitur utama dan nilai jual brand.
+        ============================================================================
+        -->
+        <section class="Keunggulan-Section">
+            <div class="Keunggulan-Container">
+                <div class="Keunggulan-Text-Container" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="Keunggulan-Slogan">Mengapa Memilih Kami</span>
+                    <h2 class="Keunggulan-Title">
+                        <span class="Title-Normal2">Keunggulan</span>
+                        <span class="Title-Accent2">Aerostreet</span>
+                    </h2>
+                    <p class="Keunggulan-Description">Kami berkomitmen untuk memberikan pengalaman berbelanja terbaik
+                        dengan layanan luar biasa dan jaminan kualitas kami</p>
+                </div>
+            </div>
+
+            <!-- Grid Box Keunggulan -->
+            <div class="Keunggulan-Grid-Container">
+                <!-- Box 1 -->
+                <div class="Keunggulan-Box" style="--hover-color: #FF5330;" data-aos="fade-up" data-aos-duration="800"
+                    data-aos-delay="0">
+                    <div class="Keunggulan-Icon-Wrapper1" style="color: #FF5330;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                        </svg>
+                    </div>
+                    <h3 class="Keunggulan-Box-Title">Teknologi Shoes Injection Mould</h3>
+                    <p class="Keunggulan-Box-Desc">Teknologi penyatuan sol dan bahan kain sepatu tanpa menggunakan
+                        proses lem, membuat sepatu lebih kuat, awet, dan tidak mudah jebol.</p>
+                </div>
+
+                <!-- Box 2 -->
+                <div class="Keunggulan-Box" style="--hover-color: #1E448D;" data-aos="fade-up" data-aos-duration="800"
+                    data-aos-delay="100">
+                    <div class="Keunggulan-Icon-Wrapper2" style="color: #1E448D;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                            <line x1="7" y1="7" x2="7.01" y2="7" />
+                        </svg>
+                    </div>
+                    <h3 class="Keunggulan-Box-Title">Harga Sangat Terjangkau</h3>
+                    <p class="Keunggulan-Box-Desc">Komitmen kami mewujudkan "Now Everyone Can Buy a Good Shoes" dengan
+                        memberikan kualitas premium di harga yang bersahabat.</p>
+                </div>
+
+                <!-- Box 3 -->
+                <div class="Keunggulan-Box" style="--hover-color: #2BC18F;" data-aos="fade-up" data-aos-duration="800"
+                    data-aos-delay="200">
+                    <div class="Keunggulan-Icon-Wrapper3" style="color: #2BC18F;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                            <line x1="4" y1="22" x2="4" y2="15" />
+                        </svg>
+                    </div>
+                    <h3 class="Keunggulan-Box-Title">100% Karya Anak Bangsa</h3>
+                    <p class="Keunggulan-Box-Desc">Produk asli Indonesia yang diproduksi oleh tenaga ahli lokal,
+                        membuktikan
+                        bahwa produk dalam negeri memiliki kualitas global.</p>
+                </div>
+
+                <!-- Box 4 -->
+                <div class="Keunggulan-Box" style="--hover-color: #F6AD32;" data-aos="fade-up" data-aos-duration="800"
+                    data-aos-delay="300">
+                    <div class="Keunggulan-Icon-Wrapper1" style="color: #F6AD32;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                    </div>
+                    <h3 class="Keunggulan-Box-Title">Bahan Berkualitas Tinggi</h3>
+                    <p class="Keunggulan-Box-Desc">Dibuat menggunakan material pilihan terbaik yang telah lulus uji
+                        ketahanan untuk memastikan kenyamanan dan durabilitas maksimal.</p>
+                </div>
+
+                <!-- Box 5 -->
+                <div class="Keunggulan-Box" style="--hover-color: #966CF6;" data-aos="fade-up" data-aos-duration="800"
+                    data-aos-delay="400">
+                    <div class="Keunggulan-Icon-Wrapper2" style="color: #966CF6;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                            <path d="M3 6h18" />
+                            <path d="M16 10a4 4 0 0 1-8 0" />
+                        </svg>
+                    </div>
+                    <h3 class="Keunggulan-Box-Title">Tersedia di Seluruh Marketplace</h3>
+                    <p class="Keunggulan-Box-Desc">Dapatkan produk Aerostreet dengan mudah melalui berbagai platform
+                        e-commerce resmi seperti Shopee, TikTok Shop, Tokopedia, Lazada dan Blibli.</p>
+                </div>
+
+                <!-- Box 6 -->
+                <div class="Keunggulan-Box" style="--hover-color: #12B9D6;" data-aos="fade-up" data-aos-duration="800"
+                    data-aos-delay="500">
+                    <div class="Keunggulan-Icon-Wrapper3" style="color: #12B9D6;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="m12 3-1.9 1.9-1.9-1.9-1.9 1.9-1.9-1.9L2.5 5l1.9 1.9-1.9 1.9 1.9 1.9-1.9 1.9L4.4 14l1.9-1.9 1.9 1.9 1.9-1.9 1.9 1.9L12 17l1.9-1.9 1.9 1.9 1.9-1.9 1.9 1.9 1.9-1.9 1.9 1.9-1.9-1.9 1.9-1.9-1.9-1.9 1.9-1.9-1.9-1.9Z" />
+                        </svg>
+                    </div>
+                    <h3 class="Keunggulan-Box-Title">Desain Stylish & Trendy</h3>
+                    <p class="Keunggulan-Box-Desc">Selalu menghadirkan inovasi desain terbaru yang mengikuti
+                        perkembangan
+                        tren fashion masa kini untuk menunjang penampilan Anda.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================================================
+        6. CATEGORIES SECTION
+        Grid kategori produk visual (Sepatu, Apparel, Sandal, Perawatan).
+        ============================================================================
+        -->
+        <section id="Categories" class="Categories-Section">
+            <div class="Categories-Container">
+                <div class="Categories-Text-Container" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="Categories-Slogan">Categori Produk</span>
+                    <h2 class="Categories-Title">
+                        <span class="Title-Normal3">Koleksi</span>
+                        <span class="Title-Accent3">Produk</span>
+                    </h2>
+                    <p class="Categories-Description">Berbagai macam kategori yang tersedia sesuai dengan kebutuhan dan
+                        gaya
+                        fashion</p>
+                </div>
+            </div>
+
+            <div class="Category-Grid-Container">
+                <!-- Box 1: Sepatu -->
+                <div class="Category-Box" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="0">
+                    <img loading="lazy" src="Elemen/Sepatu/Sepatu%20Denim%20Caknan%20Putih%20Biru.jpeg" width="350"
+                        height="350" alt="Kategori Sepatu" class="Category-Box-Bg">
+                    <div class="Category-Box-Content">
+                        <span>150+ Produk</span>
+                        <h3>Sepatu</h3>
+                        <p>Lihat Koleksi <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+                                <path d="M7 7h10v10"></path>
+                                <path d="M7 17 17 7"></path>
+                            </svg></p>
+                    </div>
+                </div>
+
+                <!-- Box 2: Pakaian -->
+                <div class="Category-Box" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                    <img loading="lazy" width="350" height="350"
+                        src="Elemen/Pakaian%20Pria%20dan%20Wanita/T%20Shirt%20Boxy%20With%20Muse%20Ivory.jpeg"
+                        alt="Kategori Apparel" class="Category-Box-Bg">
+                    <div class="Category-Box-Content">
+                        <span>250+ Produk</span>
+                        <h3>Apparel</h3>
+                        <p>Lihat Koleksi <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+                                <path d="M7 7h10v10"></path>
+                                <path d="M7 17 17 7"></path>
+                            </svg></p>
+                    </div>
+                </div>
+
+                <!-- Box 3: Sandal -->
+                <div class="Category-Box" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                    <img loading="lazy" src="Elemen/Sandal/Sandal%20Hugo%20Kream%20Muda%20Hitam.jpeg" width="350"
+                        height="350" alt="Kategori Sandal" class="Category-Box-Bg">
+                    <div class="Category-Box-Content">
+                        <span>50+ Produk</span>
+                        <h3>Sandal</h3>
+                        <p>Lihat Koleksi <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+                                <path d="M7 7h10v10"></path>
+                                <path d="M7 17 17 7"></path>
+                            </svg></p>
+                    </div>
+                </div>
+
+                <!-- Box 4: Perawatan -->
+                <div class="Category-Box" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                    <img loading="lazy" src="Elemen/Aksesoris%20&%20Produk%20Perawatan/Aerostreet%20Parfum%20Manly.jpeg"
+                        width="350" height="350" alt="Kategori Perawatan" class="Category-Box-Bg">
+                    <div class="Category-Box-Content">
+                        <span>25+ Produk</span>
+                        <h3>Perawatan</h3>
+                        <p>Lihat Koleksi <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+                                <path d="M7 7h10v10"></path>
+                                <path d="M7 17 17 7"></path>
+                            </svg></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================================================
+        7. CONTACT SECTION
+        Informasi lokasi, sosial media, dan formulir pengiriman pesan.
+        ============================================================================
+        -->
+        <section id="Contact" class="Contact-Section">
+            <div class="Contact-Container">
+                <div class="Contact-Text-Container" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="Contact-Slogan">Hubungi Kami</span>
+                    <h2 class="Contact-Title">
+                        <span class="Title-Normal4">Mari</span>
+                        <span class="Title-Accent4">Terhubung</span>
+                    </h2>
+                    <p class="Contact-Description">Punya pertanyaan atau ingin bekerja sama? Jangan ragu untuk
+                        menghubungi
+                        kami</p>
+                </div>
+            </div>
+
+            <div class="Contact-Content-Container">
+                <!-- Informasi Kontak - Left Side -->
+                <div class="Contact-Info" data-aos="fade-right" data-aos-duration="1000">
+                    <h4>Informasi Kontak</h4>
+                    <p>Kami siap membantu Anda dengan segala pertanyaan tentang produk, pemesanan, atau kerja sama.
+                        Hubungi
+                        kami melalui detail di bawah ini untuk pertanyaan atau kolaborasi</p>
+                    <div class="Contact-Info-Boxes">
+                        <div class="Contact-Info-Box">
+                            <div class="Info-Box-Icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="Info-Box-Text">
+                                <h4>Alamat</h4>
+                                <p>Jl Pakis Daleman Km 04, Bentangan, Wonosari, Kab. Klaten, Jawa Tengah, 57473</p>
+                            </div>
+                        </div>
+                        <div class="Contact-Info-Box">
+                            <div class="Info-Box-Icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="Info-Box-Text">
+                                <h4>Telepon</h4>
+                                <p>0887-0700-7000</p>
+                            </div>
+                        </div>
+                        <div class="Contact-Info-Box">
+                            <div class="Info-Box-Icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                            </div>
+                            <div class="Info-Box-Text">
+                                <h4>Email</h4>
+                                <p>aerostreet.sales@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="Contact-Info-Box">
+                            <div class="Info-Box-Icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <div class="Info-Box-Text">
+                                <h4>Jam Operasional</h4>
+                                <p>Senin - Jumat : 08:00 AM - 05:00 PM</p>
+                                <p>Sabtu : 08:00 AM - 03:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Contact-Socials">
+                        <h4>Ikuti Kami</h4>
+                        <div class="Social-Icons-Container">
+                            <a href="https://www.instagram.com/aerostreet" target="_blank" rel="noopener noreferrer"
+                                class="Social-Icon-Box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/aerostreetcaesarico" target="_blank"
+                                rel="noopener noreferrer" class="Social-Icon-Box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                            <a href="https://www.tiktok.com/@aerostreet" target="_blank" rel="noopener noreferrer"
+                                class="Social-Icon-Box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulir Kontak - Right Side -->
+                <div class="Contact-Form-Wrapper" data-aos="fade-left" data-aos-duration="1000">
+                    <form action="#" class="Contact-Form">
+                        <h3>Kirim Pesan</h3>
+                        <div class="Form-Group">
+                            <label for="name" class="Form-Label">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" class="Form-Input" placeholder="Masukkan nama Anda"
+                                autocomplete="name" required>
+                        </div>
+                        <div class="Form-Group">
+                            <label for="email" class="Form-Label">Email</label>
+                            <input type="email" id="email" name="email" class="Form-Input"
+                                placeholder="Masukkan email Anda" autocomplete="email" required>
+                        </div>
+                        <div class="Form-Group">
+                            <label for="phone" class="Form-Label">Nomer Telepon</label>
+                            <input type="tel" id="phone" name="phone" class="Form-Input"
+                                placeholder="Masukkan nomer telepon Anda" autocomplete="tel" required>
+                        </div>
+                        <div class="Form-Group">
+                            <label for="subject" class="Form-Label">Subjek</label>
+                            <input type="text" id="subject" name="subject" class="Form-Input" placeholder="Subjek pesan"
+                                required>
+                        </div>
+                        <div class="Form-Group">
+                            <label for="message" class="Form-Label">Pesan</label>
+                            <textarea id="message" name="message" class="Form-Textarea" rows="5"
+                                placeholder="Tulis pesan Anda di sini..." required></textarea>
+                        </div>
+                        <button type="submit" class="Form-Button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-send w-5 h-5" aria-hidden="true">
+                                <path
+                                    d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+                                </path>
+                                <path d="m21.854 2.147-10.94 10.939"></path>
+                            </svg>
+                            <span>Kirim Pesan</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+    ============================================================================
+    8. FOOTER SECTION
+    Informasi hak cipta, tautan kebijakan, dan ikon sosial media.
+    ============================================================================
+    -->
+    <footer>
+        <section class="Footer-Section">
+            <div class="Footer-Container">
+                <div class="Footer-Content" data-aos="fade-up" data-aos-duration="1000">
+                    <!-- Element 1: Brand Info -->
+                    <div class="Footer-Column Brand-Column">
+                        <h3 class="Footer-Logo"><span style="color: #ffffff;">AERO</span><span
+                                style="color: #FF5330;">STREET</span></h3>
+                        <p class="Footer-Desc">Brand sepatu lokal Indonesia yang menghadirkan produk berkualitas dengan
+                            harga terjangkau. Now Everyone Can Buy a Good Shoes.</p>
+
+                        <div class="Footer-Contact-List">
+                            <div class="Footer-Contact-Item">
+                                <div class="Contact-Icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                </div>
+                                <span>Jl Pakis Daleman Km 04, Bentangan, Wonosari, Kab. Klaten, Jawa Tengah,
+                                    57473</span>
+                            </div>
+                            <div class="Footer-Contact-Item">
+                                <div class="Contact-Icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                    </svg>
+                                </div>
+                                <span>0887-0700-7000</span>
+                            </div>
+                            <div class="Footer-Contact-Item">
+                                <div class="Contact-Icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect width="20" height="16" x="2" y="4" rx="2" />
+                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                    </svg>
+                                </div>
+                                <span>aerostreet.sales@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Element 2: Produk -->
+                    <div class="Footer-Column">
+                        <h4 class="Footer-Title">Produk</h4>
+                        <ul class="Footer-Links">
+                            <li><a href="#">Sepatu</a></li>
+                            <li><a href="#">Apparel</a></li>
+                            <li><a href="#">Sandal</a></li>
+                            <li><a href="#">Perawatan</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Element 3: Perusahaan -->
+                    <div class="Footer-Column">
+                        <h4 class="Footer-Title">Perusahaan</h4>
+                        <ul class="Footer-Links">
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">Karir</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Element 4: Bantuan -->
+                    <div class="Footer-Column">
+                        <h4 class="Footer-Title">Bantuan</h4>
+                        <ul class="Footer-Links">
+                            <li><a href="#">Cara Pemesanan</a></li>
+                            <li><a href="#">Pengiriman</a></li>
+                            <li><a href="#">Pengembalian Barang</a></li>
+                            <li><a href="#">Status Pesanan</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Garis Pemisah -->
+            <div class="Footer-Line"></div>
+
+            <div class="Footer-Container">
+                <div class="Footer-Bottom">
+                    <div class="Copyright-Text">
+                        © <span id="copyright-year"></span> Aerostreet Indonesia. All rights reserved.
+                    </div>
+                    <div class="Footer-Socials">
+                        <a href="https://www.instagram.com/aerostreet" target="_blank" rel="noopener noreferrer"
+                            class="Social-Box-Footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/aerostreetcaesarico" target="_blank" rel="noopener noreferrer"
+                            class="Social-Box-Footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@aerostreet" target="_blank" rel="noopener noreferrer"
+                            class="Social-Box-Footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+
+    <!-- Developer Credit - Bottom Right Fixed -->
+    <div class="Dev-Credit">
+        <span class="Dev-Name">Winanda</span><span class="Dev-Text">Dev</span>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/gsap@3.0.1/dist/gsap.min.js' defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js" defer></script>
+
+</body>
+
+</html>
